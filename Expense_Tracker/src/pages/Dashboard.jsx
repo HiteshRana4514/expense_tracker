@@ -4,6 +4,8 @@ import MobMenu from '../components/MobMenu';
 import SideBar from '../components/SideBar';
 import { isMobile } from '../hooks/isMobile';
 import { motion, AnimatePresence } from 'framer-motion';
+import DashboardContent from './dashboardContent/DashboardContent';
+import {Outlet} from 'react-router-dom';
 
 function Dashboard() {
   const mobile = isMobile();
@@ -35,7 +37,7 @@ function Dashboard() {
               animate="visible"
               exit="hidden"
               variants={sidebarVariants}
-              className="absolute top-0 left-0 h-[calc(100vh-133px)] w-[300px] bg-gray-100 p-4 z-50"
+              className="absolute top-0 left-0 h-[calc(100vh-133px)] w-[300px] bg-[#1A1A2E] p-4 z-50"
             >
               <SideBar setShowMenu={setShowMenu} />
             </motion.div>
@@ -43,13 +45,14 @@ function Dashboard() {
         </AnimatePresence>
 
         {!mobile && (
-          <div className="w-1/6 bg-gray-100 p-4 h-[calc(100vh-76px)]">
+          <div className="w-1/6 bg-[#F5F9FF] p-4 h-[calc(100vh-76px)]">
             <SideBar setShowMenu={setShowMenu} />
           </div>
         )}
 
-        <div className={mobile ? 'w-full p-4' : 'w-3/4 p-4'}>
-          <h2 className="text-lg font-bold">Dashboard Content</h2>
+        <div className={mobile ? 'w-full p-4' : 'w-5/6 p-4'}>
+          <Outlet />
+          {/* <DashboardContent /> */}
         </div>
       </div>
     </>

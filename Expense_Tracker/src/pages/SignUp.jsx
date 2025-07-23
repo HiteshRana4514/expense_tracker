@@ -2,6 +2,7 @@ import React from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { account, ID } from '../lib/appwrite';
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,7 +14,7 @@ function SignUp() {
   const handlePassword = (value) => {
     setPassword(value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
@@ -36,6 +37,14 @@ function SignUp() {
       );
       return;
     }
+
+    await account.create(ID.unique(), email, password, name);
+    alert("User registered successfully!");
+    setEmail("");
+    setPassword("");
+    setName("");
+    setConfirmPassword("");
+
     console.log("Form submitted successfully!");
   };
 

@@ -18,7 +18,7 @@ function MobMenu({setShowMenu, showMenu}) {
     }, [showMenu]);
   return (
     <>
-      <div className="p-4 bg-gray-400">
+      <div className="p-4 bg-[#1A1A2E]">
   <span
     className="border border-white w-[40px] h-[33px] block p-1 rounded-md relative cursor-pointer"
     onClick={() => setIsOpen(!isOpen)}
